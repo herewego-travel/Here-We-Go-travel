@@ -140,6 +140,56 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;backgroun
 @keyframes fly{0%{left:0;opacity:0}6%{opacity:1}86%{opacity:1}100%{left:calc(100% - 56px);opacity:0}}
 @keyframes flyR{0%{right:0;opacity:0}6%{opacity:1}86%{opacity:1}100%{right:calc(100% - 56px);opacity:0}}
 .sec-title{text-align:center;margin-top:4px}
+/* ===== International trips: night-sky band, flight route, boarding passes ===== */
+.intl{position:relative;margin:34px clamp(0px,2vw,20px) 6px;padding:26px clamp(12px,4vw,30px) 28px;border-radius:26px;color:#fff;overflow:hidden;
+  background:radial-gradient(120% 80% at 85% 0%,#3A57B0 0%,transparent 55%),radial-gradient(90% 70% at 0% 100%,#1B8FB8 0%,transparent 60%),linear-gradient(160deg,#1E2770,#141A4F);
+  box-shadow:0 22px 50px -28px rgba(20,26,58,.8)}
+.intl::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.18) 1px,transparent 1.4px);background-size:16px 16px;
+  -webkit-mask-image:radial-gradient(70% 60% at 50% 40%,#000,transparent);mask-image:radial-gradient(70% 60% at 50% 40%,#000,transparent);pointer-events:none}
+.intl::after{content:"";position:absolute;width:360px;height:360px;border-radius:50%;right:-120px;top:-150px;border:1.5px solid rgba(255,255,255,.1);
+  box-shadow:0 0 0 40px rgba(255,255,255,.03),0 0 0 80px rgba(255,255,255,.02);pointer-events:none}
+.intl-head{position:relative;text-align:center}
+.intl-eyebrow{display:inline-block;font:700 .72rem/1 var(--f-label);letter-spacing:.16em;text-transform:uppercase;color:var(--sea-2);border:1px solid rgba(143,221,238,.4);border-radius:99px;padding:6px 12px}
+.intl-head h2{margin:10px 0 0;font:400 clamp(2.2rem,10vw,3.4rem)/1.05 var(--f-ar-display);color:#fff;text-shadow:0 4px 18px rgba(0,0,0,.35)}
+[dir="ltr"] .intl-head h2{font:800 clamp(1.8rem,8vw,2.8rem)/1.1 var(--f-label)}
+.intl-script{font:400 clamp(1.7rem,7vw,2.4rem)/1 var(--f-script);color:var(--sea-2);margin-top:2px}
+.route{position:relative;display:block;width:100%;height:auto;margin:8px 0 4px;overflow:visible}
+.route-glow{fill:none;stroke:rgba(224,38,43,.25);stroke-width:9;stroke-linecap:round}
+.route-dash{fill:none;stroke:#FF4A4F;stroke-width:3;stroke-linecap:round;stroke-dasharray:1 11;animation:dash 1.2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-24}}
+.route-dot{fill:#FF4A4F}
+.route-pulse{fill:none;stroke:#FF4A4F;stroke-width:2;transform-origin:40px 104px;animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{from{transform:scale(.5);opacity:1}to{transform:scale(1.6);opacity:0}}
+.route-pin{fill:#FF4A4F;stroke:#fff;stroke-width:2}
+.route-lbl{fill:#fff;font:700 13px var(--f-label);letter-spacing:.14em;text-anchor:middle}
+.route-plane svg{overflow:visible}
+.passes{position:relative;display:grid;gap:16px;margin-top:6px}
+.pass{position:relative;display:grid;grid-template-columns:40% 1fr;min-height:150px;background:#fff;color:var(--ink);text-decoration:none;border-radius:18px;overflow:hidden;
+  box-shadow:0 14px 30px -16px rgba(0,0,0,.6);transition:transform .25s,box-shadow .25s}
+.pass:hover{transform:translateY(-4px) rotate(-.4deg);box-shadow:0 22px 40px -18px rgba(0,0,0,.7)}
+.pass-ph{position:relative;background:#dfe6ee}
+.pass-ph img{width:100%;height:100%;object-fit:cover;display:block}
+.pass-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 55%,rgba(255,255,255,.25))}
+[dir="rtl"] .pass-ph::after{background:linear-gradient(270deg,transparent 55%,rgba(255,255,255,.25))}
+.pass-flags{position:absolute;z-index:1;bottom:10px;inset-inline-start:10px;display:flex;gap:4px;flex-wrap:wrap;max-width:85%}
+.pass-flags img{width:30px;height:auto;border-radius:4px;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35)}
+.pass-body{position:relative;padding:14px 16px 14px;display:flex;flex-direction:column;gap:2px;min-width:0;border-inline-start:2px dashed #C9D3E3}
+.pass-body::before,.pass-body::after{content:"";position:absolute;inset-inline-start:-11px;width:20px;height:20px;border-radius:50%;background:#1E2770}
+.pass-body::before{top:-10px}.pass-body::after{bottom:-10px}
+.pass-route{display:flex;align-items:center;gap:8px;font:800 .8rem/1 var(--f-label);letter-spacing:.14em;color:var(--muted)}
+.pass-route i{flex:1;height:14px;display:flex;align-items:center;background:linear-gradient(90deg,#C9D3E3 50%,transparent 0) 0 50%/8px 2px repeat-x}
+.pass-route i svg{width:26px;height:14px;margin:auto;background:#fff;padding:0 3px}
+[dir="rtl"] .pass-route i svg{transform:scaleX(-1)}
+.pass h3{margin:8px 0 0;font:800 clamp(1.3rem,5.4vw,1.7rem)/1.1 var(--f-label);color:var(--navy-2)}
+.pass-sub{font-weight:600;font-size:.86rem;color:var(--muted)}
+.pass-meta{margin-top:auto;padding-top:10px;display:flex;justify-content:space-between;align-items:flex-end;gap:8px;flex-wrap:wrap}
+.pass-meta small{display:block;font-size:.72rem;color:var(--muted);font-weight:700}
+.pass-meta b{font:800 1.2rem/1 var(--f-label);color:var(--red);font-variant-numeric:tabular-nums}
+.pass-cta{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:#fff;border-radius:99px;padding:6px 12px;font:700 .8rem var(--f-body)}
+.pass-cta svg{width:16px;height:16px}
+[dir="rtl"] .pass-cta svg{transform:scaleX(-1)}
+@media (min-width:700px){.pass{min-height:170px}}
+@media (max-width:360px){.pass{grid-template-columns:1fr}.pass-ph{height:140px}.pass-body{border-inline-start:0;border-top:2px dashed #C9D3E3}.pass-body::before,.pass-body::after{display:none}}
 .sec-title .pill svg{width:36px;height:18px}
 [dir="rtl"] .sec-title .pill svg{transform:scaleX(-1)}
 .honey-div{display:flex;align-items:center;gap:14px;margin:34px clamp(8px,4vw,40px) 0}
@@ -609,7 +659,11 @@ async function loadSheet() {
 function img(u) {
   u = String(u || '').trim(); if (!u) return '';
   const m = u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/) || u.match(/docs\.google\.com\/uc\?.*id=([\w-]{20,})/);
-  return m ? `https://drive.google.com/thumbnail?id=${m[1]}&sz=w1600` : u;
+  if (m) return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w1600`;
+  if (/^(https?:)?\/\//i.test(u) || /^data:/i.test(u)) return u;
+  // a plain file name like "dahab-1.jpg" or "images/dahab-1.jpg" = a photo uploaded to the website's GitHub folder
+  const path = u.replace(/^\.?\//, '');
+  return (path.includes('/') ? '' : 'images/') + path.split('/').map(encodeURIComponent).join('/');
 }
 // Add built-in international / honeymoon destinations that the sheet doesn't have yet,
 // and take group/flag from the built-in data when the sheet has no such columns.
@@ -680,6 +734,50 @@ function destCards(list) {
       <span class="label">${esc(d.name_en || L(d, 'name'))}</span></a>`;
   }).join('')}</div>`;
 }
+const CODES = {turkey: 'IST', maldives: 'MLE', msc: 'MED'};
+function routeSvg() {
+  const P = 'M40 104 Q 95 34 150 92 T 260 92 T 370 92 T 480 74 L 556 46';
+  return `<svg class="route" viewBox="0 0 600 140" aria-hidden="true">
+    <path d="${P}" class="route-glow"/>
+    <path d="${P}" class="route-dash"/>
+    <circle cx="40" cy="104" r="7" class="route-dot"/><circle cx="40" cy="104" r="14" class="route-pulse"/>
+    <text x="40" y="132" class="route-lbl">CAI</text>
+    <g transform="translate(556 46)"><path d="M0 -26 C -11 -26 -17 -17 -17 -10 C -17 2 0 16 0 16 C 0 16 17 2 17 -10 C 17 -17 11 -26 0 -26Z" class="route-pin"/><circle cy="-10" r="6" fill="#fff"/></g>
+    <text x="556" y="86" class="route-lbl">WORLD</text>
+    <g class="route-plane">
+      <g transform="translate(-30 -15) scale(.95)">${PLANE_SVG.replace(/<\/?svg[^>]*>/g, '')}</g>
+      <animateMotion dur="6s" repeatCount="indefinite" rotate="auto" path="${P}"/>
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.07;.86;1" dur="6s" repeatCount="indefinite"/>
+    </g>
+  </svg>`;
+}
+function passCard(d) {
+  const usd = d.currency === 'USD';
+  const flags = String(d.flag || '').split(/[,،\s]+/).map(x => x.trim().toLowerCase()).filter(x => /^[a-z]{2}$/.test(x)).slice(0, 4);
+  const code = (d.code || CODES[d.id] || (d.name_en || d.id).replace(/[^A-Za-z]/g, '').slice(0, 3)).toUpperCase();
+  const price = d.min !== null ? (usd ? '$' + fmt(d.min) : fmt(d.min) + (LANG === 'ar' ? ' ج' : ' EGP')) : t('ask');
+  return `<a class="pass" href="#d-${esc(d.id)}">
+    <div class="pass-ph"><img loading="lazy" src="${esc(d.image)}" alt="${esc(L(d, 'name'))}" onerror="this.style.visibility='hidden'">
+      ${flags.length ? `<span class="pass-flags">${flags.map(c => `<img src="https://flagcdn.com/w80/${c}.png" alt="${c.toUpperCase()}" width="30" height="20">`).join('')}</span>` : ''}</div>
+    <div class="pass-body">
+      <div class="pass-route"><span>CAI</span><i>${PLANE_SVG}</i><span>${esc(code)}</span></div>
+      <h3>${esc(d.name_en || L(d, 'name'))}</h3>
+      <div class="pass-sub">${esc(LANG === 'ar' ? (d.name_ar || '') + (d.region_ar ? ' · ' + d.region_ar : '') : (d.region_en || ''))}</div>
+      <div class="pass-meta"><span><small>${t('from')}</small><b>${price}</b></span><span class="pass-cta">${LANG === 'ar' ? 'شوف العرض' : 'View offer'} ${ARROW}</span></div>
+    </div>
+  </a>`;
+}
+function intlSection(list) {
+  return `<section class="intl">
+    <div class="intl-head">
+      <span class="intl-eyebrow">${LANG === 'ar' ? 'حول العالم · Around the world' : 'Around the world'}</span>
+      <h2>${t('intl')}</h2>
+      <div class="intl-script">${LANG === 'ar' ? 'International Trips' : 'Bon Voyage'}</div>
+    </div>
+    ${routeSvg()}
+    <div class="passes">${list.map(passCard).join('')}</div>
+  </section>`;
+}
 function home() {
   const M = DATA.M;
   const grp = g => M.dests.filter(d => (String(d.group || '').trim().toLowerCase() || 'local') === g);
@@ -690,7 +788,7 @@ function home() {
       <div class="script">${t('offers')}</div>
       <div class="pill">${t('tap')} ${POINTER}</div>
       ${destCards(local)}
-      ${intl.length ? `${flightLine()}<div class="sec-title"><div class="pill">${t('intl')} ${PLANE_SVG}</div></div>${destCards(intl)}` : ''}
+      ${intl.length ? intlSection(intl) : ''}
       ${honey.length ? `<div class="honey-div" role="heading" aria-level="2"><span class="hl"></span><span class="ht">Honeymoon <i>♥</i></span><span class="hl"></span></div>${destCards(honey)}` : ''}
       <div class="home-actions">${bottomButtons()}</div>
     </div>

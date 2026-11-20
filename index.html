@@ -715,7 +715,7 @@ function model(raw) {
     const dest = r.destination_id || (cur && cur.dest), name = r.hotel || (cur && cur.name);
     if (!cur || cur.dest !== dest || cur.name !== name) {
       cur = {dest, name, cat_ar: r.category_ar, cat_en: r.category_en, description_ar: r.description_ar, description_en: r.description_en,
-             imgs: [img(r.image1), img(r.image2)].filter(Boolean), album: String(r.album || '').split(/[\n,،;]+/).map(x => img(x)).filter(Boolean),
+             imgs: [img(r.image1), img(r.image2)].filter(Boolean), album: String(r.album || '').split(/[\n,،;]+/).map(x => img(x)).filter(Boolean), album_show: r.album_show,
              banner_ar: r.banner_ar, banner_en: r.banner_en, banner_show: r.banner_show, labels_ar: r.labels_ar, labels_en: r.labels_en, extras: r.extras,
              badge_ar: r.badge_ar, badge_en: r.badge_en, show: yes(r.show), rows: []};
       if (!cur.cat_ar && !cur.cat_en) { const prev = [...hotels].reverse().find(h => h.dest === dest); if (prev) { cur.cat_ar = prev.cat_ar; cur.cat_en = prev.cat_en; } }
@@ -831,7 +831,7 @@ function hotelRows(h, d, labels, cols) {
   const badge = L(h, 'badge');
   const n = h.rows.length;
   const cur = d.currency === 'USD' ? '$' : '';
-  const gal = [...new Set(h.album.length ? h.album : h.imgs)];
+  const gal = [...new Set(h.album.length && yes(h.album_show) ? h.album : h.imgs)];
   const gi = (window.__albums = window.__albums || []).push(gal) - 1;
   const CAM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>';
   const thumbs = h.imgs.length ? `<div class="thumbs${h.imgs.length === 1 ? ' one' : ''}" data-gal="${gi}">${h.imgs.map(u => `<img loading="lazy" src="${esc(u)}" alt="${esc(h.name)}" onerror="this.remove()">`).join('')}</div>${gal.length > 2 ? `<button type="button" class="albtn" data-gal="${gi}">${CAM}${gal.length} ${t('photos')}</button>` : ''}` : '';
